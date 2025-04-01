@@ -2,20 +2,20 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,angular
 
 ### Angular ###
-# compiled output
+# Compiled output
 dist/
 tmp/
 app/**/*.js
 app/**/*.js.map
 
-# dependencies
+# Dependencies
 node_modules/
 bower_components/
 
 # IDEs and editors
 .idea/
 
-# misc
+# Misc
 .sass-cache/
 connect.lock/
 coverage/
@@ -25,18 +25,18 @@ testem.log
 typings/
 .angular/
 
-# e2e
+# End-to-end tests
 e2e/*.js
 e2e/*.map
 
-# System Files
+# System files
 .DS_Store/
 
 ### Java ###
-# Compiled class file
+# Compiled class files
 *.class
 
-# Log file
+# Log files
 *.log
 
 # BlueJ files
@@ -45,7 +45,7 @@ e2e/*.map
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package files
 *.jar
 *.war
 *.nar
@@ -57,8 +57,9 @@ e2e/*.map
 # Maven target directory
 /target/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/erro
+# JVM crash logs
 hs_err_pid*
 replay_pid*
 
-# End of https://www.toptal.com/developers/gitignore/api/java,angular
+# ⚠️ Don't ignore docker-compose.yml!
+
