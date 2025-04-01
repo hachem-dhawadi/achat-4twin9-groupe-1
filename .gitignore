@@ -2,7 +2,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,angular
 
 ### Angular ###
-## Angular ##
 # compiled output
 dist/
 tmp/
@@ -55,7 +54,10 @@ e2e/*.map
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Maven target directory
+/target/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/erro
 hs_err_pid*
 replay_pid*
 
