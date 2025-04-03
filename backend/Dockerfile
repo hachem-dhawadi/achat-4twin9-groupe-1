@@ -1,6 +1,3 @@
-FROM openjdk:17
-WORKDIR /app
-COPY target/*.jar app.jar
-EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "app.jar"]
-
+FROM openjdk:11
+COPY target/achat-1.0.jar achat.jar
+ENTRYPOINT ["java", "-jar", "/achat.jar"]
