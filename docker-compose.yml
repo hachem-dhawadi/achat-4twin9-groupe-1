@@ -13,15 +13,15 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - mynetwork
 
   backend:
     image: achat-backend-sakerhajji-4twin9
-  
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: achat-backend
-
     ports:
       - "8089:8089"
     environment:
@@ -30,6 +30,24 @@ services:
       SPRING_DATASOURCE_PASSWORD: rootpassword
     depends_on:
       - mysql
+    networks:
+      - mynetwork
+
+  frontend:
+    image: achat-frontend-sakerhajji-4twin9
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-container
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
 
 volumes:
   mysql_data:
+
+networks:
+  mynetwork:
