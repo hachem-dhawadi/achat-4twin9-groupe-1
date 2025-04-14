@@ -11,6 +11,7 @@ logs_backup/
 docker-compose.yml
 
 
+
 .idea/
 
 !.mvn/wrapper/maven-wrapper.jar
