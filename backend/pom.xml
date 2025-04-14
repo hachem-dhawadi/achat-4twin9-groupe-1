@@ -137,4 +137,11 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id> <!-- IDENTIQUE à celui de settings.xml -->
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
+
 </project>
