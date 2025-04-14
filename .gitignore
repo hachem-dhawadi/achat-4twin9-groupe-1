@@ -10,7 +10,6 @@ logs_backup/
 # Docker Compose
 docker-compose.yml
 
-=======
 .idea/
 
 !.mvn/wrapper/maven-wrapper.jar
@@ -91,6 +90,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
 
 
 
