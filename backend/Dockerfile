@@ -1,14 +1,3 @@
-# Base image
-FROM openjdk:8-jdk-slim
-
-# Metadata
-LABEL maintainer="saker.hajji@esprit.tn"
-
-# Copy the packaged JAR file
-COPY target/achat-1.0.jar app.jar
-
-# Expose the port used by the application (from application.properties)
-EXPOSE 8089
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM openjdk:11
+COPY target/achat-1.0.jar achat.jar
+ENTRYPOINT ["java", "-jar", "/achat.jar"]
