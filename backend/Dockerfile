@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-slim
 
 # Metadata
-LABEL maintainer="your-email@example.com"
+LABEL maintainer="saker.hajji@esprit.tn"
 
 # Copy the packaged JAR file
 COPY target/achat-1.0.jar app.jar

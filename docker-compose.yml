@@ -22,6 +22,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: achat-backend
+    volumes:
+      - ./backend:/app
+      - ./logs:/logs
     ports:
       - "8089:8089"
     environment:
@@ -43,6 +46,9 @@ services:
       - "4200:80"
     depends_on:
       - backend
+    
+    volumes:
+      - ./logs/nginx:/var/log/nginx
     networks:
       - mynetwork
 
