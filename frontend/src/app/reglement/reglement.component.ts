@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Reglement } from '../shared/Model/Reglement';
 import { ReglementService } from '../shared/Service/Reglement.service';
 import { NGXLogger } from 'ngx-logger';
+=======
+import {Component, OnInit} from '@angular/core';
+import {Reglement} from '../shared/Model/Reglement';
+import {ReglementService} from '../shared/Service/Reglement.service';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+>>>>>>> 7f0ebff (initial commit)
 
 @Component({
   selector: 'app-reglement',
@@ -11,11 +18,16 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class ReglementComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f0ebff (initial commit)
   listReglement: any;
   form: boolean = false;
   reglement!: Reglement;
   closeResult!: string;
 
+<<<<<<< HEAD
   constructor(private reglementService: ReglementService, private modalService: NgbModal, private logger: NGXLogger) {
     this.logger.info('ReglementComponent initialized');
   }
@@ -68,6 +80,38 @@ export class ReglementComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.logger.info('Modal dismissed with reason:', reason);
+=======
+  constructor(private reglementService: ReglementService, private modalService: NgbModal) {
+  }
+
+  ngOnInit(): void {
+    this.getAllReg();
+    this.reglement = {
+      idReglement:null,
+      dateReglement:null,
+      payee:null,
+      montantRestant:null,
+      montantPaye:null
+    }
+  }
+
+  getAllReg() {
+    this.reglementService.getAllReglements().subscribe(res => this.listReglement = res)
+  }
+
+  addReglement(f: any) {
+    this.reglementService.addReglement(f).subscribe(() => {
+      this.getAllReg();
+      this.form = false;
+    });
+  }
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+>>>>>>> 7f0ebff (initial commit)
     });
   }
 
@@ -82,7 +126,10 @@ export class ReglementComponent implements OnInit {
   }
 
   cancel() {
+<<<<<<< HEAD
     this.logger.info('Cancelling form...');
+=======
+>>>>>>> 7f0ebff (initial commit)
     this.form = false;
   }
 }

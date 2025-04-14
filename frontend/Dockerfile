@@ -1,14 +1,43 @@
-# Base image
+# Étape 1 : Construction de l'application Angular
+FROM node:18 AS build
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copier package.json et package-lock.json pour installer les dépendances
+COPY package.json package-lock.json ./
+
+# Installer les dépendances, incluant Angular CLI globalement
+RUN npm install --legacy-peer-deps
+RUN npm install -g @angular/cli  # Installation globale de Angular CLI
+
+# Copier le reste des fichiers du projet Angular dans le conteneur
+COPY . .
+
+# Compiler l'application Angular (génère /app/dist)
+RUN export NODE_OPTIONS=--openssl-legacy-provider && ng build
+
+# Étape 2 : Serveur Nginx pour héberger l'application
 FROM nginx:alpine
 
-# Copy the custom nginx config
+# Copier les fichiers générés dans l'étape de build vers le répertoire de Nginx
+COPY --from=build /app/dist/achat-frontend /usr/share/nginx/html
+
+# Copier la configuration personnalisée de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the built Angular app
-COPY dist/achat-frontend /usr/share/nginx/html
-
-# Expose port 80
+# Exposer le port 80 pour accéder à l'application
 EXPOSE 80
 
-# Start Nginx
+# Commande pour démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+# Étape 3 : Ajouter Prometheus Exporter pour Nginx
+FROM nginx:latest
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -LO https://github.com/prometheus/nginx_exporter/releases/download/v0.10.0/nginx-prometheus-exporter-0.10.0-linux-amd64.tar.gz
+RUN tar -xvzf nginx-prometheus-exporter-0.10.0-linux-amd64.tar.gz
+
+# Copier la configuration Nginx
+COPY nginx.conf /etc/nginx/nginx.conf

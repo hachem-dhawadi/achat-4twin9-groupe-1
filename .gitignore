@@ -10,3 +10,10 @@ node_modules/
 # Build artifacts
 target/
 dist/
+
+# Logs and backups
+logs/
+logs_backup/
+
+# Docker Compose
+docker-compose.yml
