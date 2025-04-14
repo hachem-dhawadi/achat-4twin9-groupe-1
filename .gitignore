@@ -1,5 +1,16 @@
 HELP.md
 target/
+
+dist/
+
+# Logs and backups
+logs/
+logs_backup/
+
+# Docker Compose
+docker-compose.yml
+.idea/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -78,4 +89,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
 

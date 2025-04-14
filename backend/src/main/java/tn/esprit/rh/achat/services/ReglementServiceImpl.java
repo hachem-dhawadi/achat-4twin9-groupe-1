@@ -1,6 +1,8 @@
 package tn.esprit.rh.achat.services;
 
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.Reglement;
@@ -11,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+
 @Slf4j
 public class ReglementServiceImpl implements IReglementService {
 
@@ -34,18 +37,22 @@ public class ReglementServiceImpl implements IReglementService {
 		log.info("Tous les règlements ont été récupérés.");
 		log.trace("📍 Sortie de la méthode retrieveAllReglements()");
 		return reglements;
+
 	}
 
 	@Override
 	public Reglement addReglement(Reglement r) {
+
 		log.info("Ajout du règlement : {}", r);
 		Reglement savedReglement = reglementRepository.save(r);
 		log.info("Règlement ajouté avec succès : {}", savedReglement);
 		return savedReglement;
+
 	}
 
 	@Override
 	public Reglement retrieveReglement(Long id) {
+
 		long start = System.currentTimeMillis();
 
 		log.info("Récupération du règlement avec ID : {}", id);
@@ -59,11 +66,13 @@ public class ReglementServiceImpl implements IReglementService {
 		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Temps d'exécution de la méthode retrieveReglement : {} ms", elapsedTime);
 
+
 		return reglement;
 	}
 
 	@Override
 	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
+
 		log.info("Récupération des règlements pour la facture ID : {}", idFacture);
 
 		List<Reglement> reglements = reglementRepository.retrieveReglementByFacture(idFacture);
@@ -74,13 +83,16 @@ public class ReglementServiceImpl implements IReglementService {
 
 		log.info("Tous les règlements associés à la facture ID {} ont été récupérés.", idFacture);
 		return reglements;
+
 	}
 
 	@Override
 	public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
+
 		log.info("Calcul du chiffre d'affaires entre les dates {} et {}", startDate, endDate);
 		float chiffreAffaire = reglementRepository.getChiffreAffaireEntreDeuxDate(startDate, endDate);
 		log.info("Chiffre d'affaires calculé : {}", chiffreAffaire);
 		return chiffreAffaire;
 	}
 }
+
