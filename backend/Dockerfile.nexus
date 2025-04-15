@@ -1,11 +1,13 @@
 FROM maven:3.8.5-openjdk-17
 
-RUN apt-get update && apt-get install -y dos2unix
+# ✅ Alpine-based command to install dos2unix
+RUN apk add --no-cache dos2unix
 
 WORKDIR /app
 
 COPY . .
 
+# Convert line endings + ensure mvnw is executable + build
 RUN dos2unix ./mvnw && chmod +x ./mvnw && ./mvnw clean install -DskipTests
 
 FROM openjdk:17-jdk-slim
