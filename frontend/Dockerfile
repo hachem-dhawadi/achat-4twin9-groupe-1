@@ -5,7 +5,7 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Copier package.json et package-lock.json pour installer les dépendances
-COPY package.json package-lock.json ./ 
+COPY package.json package-lock.json ./
 
 # Installer les dépendances, incluant Angular CLI globalement
 RUN npm install --legacy-peer-deps
@@ -20,8 +20,11 @@ RUN export NODE_OPTIONS=--openssl-legacy-provider && ng build
 # Étape 2 : Serveur Nginx pour héberger l'application
 FROM nginx:alpine
 
-# Copier les fichiers générés dans l'étape de build vers le répertoire de Nginx
+# ✅ Copie des fichiers Angular compilés
 COPY --from=build /app/dist/achat-frontend /usr/share/nginx/html
+
+# ✅ Copie de la config personnalisée Nginx
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Exposer le port 80 pour accéder à l'application
 EXPOSE 80
