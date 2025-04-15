@@ -1,20 +1,22 @@
-FROM maven:3.8.5-openjdk-17
+# Stage 1: Build the Spring Boot app using Maven (Debian-based)
+FROM maven:3.8.5-openjdk-17 AS build
 
-# ✅ Alpine-based command to install dos2unix
-RUN apk add --no-cache dos2unix
+# Install dos2unix using apt
+RUN apt-get update && apt-get install -y dos2unix
 
 WORKDIR /app
 
 COPY . .
 
-# Convert line endings + ensure mvnw is executable + build
+# Ensure script has correct line endings and is executable
 RUN dos2unix ./mvnw && chmod +x ./mvnw && ./mvnw clean install -DskipTests
 
+# Stage 2: Lightweight image to run the app
 FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=0 /app/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
