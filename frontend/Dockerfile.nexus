@@ -1,0 +1,12 @@
+# Use Node.js for build
+FROM node:16 AS build-stage
+
+WORKDIR /app
+COPY . .
+RUN npm install --legacy-peer-deps && npm run build -- --configuration production --output-path=dist/achat-frontend
+
+# Use Nginx to serve the app
+FROM nginx:alpine
+COPY --from=build-stage /app/dist/achat-frontend /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
