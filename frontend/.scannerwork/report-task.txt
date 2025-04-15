@@ -1,0 +1,6 @@
+projectKey=achat-frontend-sakerhajji-4twin9-group-1
+serverUrl=http://localhost:9000
+serverVersion=25.4.0.105899
+dashboardUrl=http://localhost:9000/dashboard?id=achat-frontend-sakerhajji-4twin9-group-1
+ceTaskId=d245215d-5be8-42c1-a336-a76e59739f60
+ceTaskUrl=http://localhost:9000/api/ce/task?id=d245215d-5be8-42c1-a336-a76e59739f60
