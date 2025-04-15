@@ -21,6 +21,11 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<sonar.projectKey>tn.esprit.rh:achat</sonar.projectKey>
+		<sonar.projectName>achat</sonar.projectName>
+		<sonar.projectVersion>1.0</sonar.projectVersion>
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.login>sqa_9622d137b30a555803cd30ec98f6f4521bde9730</sonar.login>
 	</properties>
 
 	<dependencies>
